@@ -1,8 +1,8 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { validateTime } = require('../js/time_math.js');
-const { isValidTheme } = require('../js/Themes.js');
+const { validateTime } = require('./time-math.js');
+const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
     'hide-non-working-days': false,
@@ -117,7 +117,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         case 'theme' : {
-            return isValidTheme(value);
+            shouldSaveDerivedPrefs |= !isValidTheme(value);
         }
         }
     }
